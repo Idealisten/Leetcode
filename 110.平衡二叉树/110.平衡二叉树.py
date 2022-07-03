@@ -7,7 +7,7 @@
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
         def height(root):
-            if not root:
+            if not root:    # 如果当前节点是null返回高度0
                 return 0
             return max(height(root.left), height(root.right)) + 1
         if not root:
