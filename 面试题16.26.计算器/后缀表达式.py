@@ -21,6 +21,7 @@ class Solution:
 
     def calculate(self, medial_exp):
         medial_exp = medial_exp.replace(" ", "")
+        # print(medial_exp)
         lens = len(medial_exp)
         i = 0
         while i < lens:
@@ -49,7 +50,7 @@ class Solution:
                         self.operator_stack.append(medial_exp[i])
                     else:   # 符号栈非空
 
-                        if medial_exp[i] == "*" or medial_exp == "/":   # 中缀表达式中此时运算符是*或/
+                        if medial_exp[i] == "*" or medial_exp[i] == "/":   # 中缀表达式中此时运算符是*或/
                             while self.operator_stack:
                                 cur_operator = self.operator_stack.pop()
                                 self.operator_stack.append(cur_operator)
@@ -70,14 +71,14 @@ class Solution:
                 i += 1
         while self.operator_stack:
             self.suffix_exp.append(self.operator_stack.pop())
-        print(self.suffix_exp)
+        # print(self.suffix_exp)
 
         for item in self.suffix_exp:
             if item.isdigit() is True:
-                self.num_stack.append(item)
+                self.num_stack.append(int(item))
             else:
-                b = int(self.num_stack.pop())
-                a = int(self.num_stack.pop())
+                b = self.num_stack.pop()
+                a = self.num_stack.pop()
                 if item == "+":
                     self.num_stack.append(a+b)
                 elif item == "-":
@@ -86,8 +87,8 @@ class Solution:
                     self.num_stack.append(a*b)
                 else:
                     self.num_stack.append(a//b)
-        return self.num_stack[0]
+        return self.num_stack.pop()
 
 
 s = Solution()
-print(s.calculate(" 3+5 / 2 "))
+print(s.calculate("0"))
