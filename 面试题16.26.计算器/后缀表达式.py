@@ -17,6 +17,7 @@ class Solution:
 
     suffix_exp = []
     operator_stack = []
+    num_stack = []
 
     def calculate(self, medial_exp):
         medial_exp = medial_exp.replace(" ", "")
@@ -71,6 +72,22 @@ class Solution:
             self.suffix_exp.append(self.operator_stack.pop())
         print(self.suffix_exp)
 
+        for item in self.suffix_exp:
+            if item.isdigit() is True:
+                self.num_stack.append(item)
+            else:
+                b = int(self.num_stack.pop())
+                a = int(self.num_stack.pop())
+                if item == "+":
+                    self.num_stack.append(a+b)
+                elif item == "-":
+                    self.num_stack.append(a-b)
+                elif item == "*":
+                    self.num_stack.append(a*b)
+                else:
+                    self.num_stack.append(a//b)
+        return self.num_stack[0]
+
 
 s = Solution()
-s.calculate("1+2*3*4+(5-6)*(7*8+9)")
+print(s.calculate(" 3+5 / 2 "))
