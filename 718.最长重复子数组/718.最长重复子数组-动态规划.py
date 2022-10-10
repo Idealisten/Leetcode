@@ -28,7 +28,7 @@ class Solution:
             for j in range(1, len2 + 1):
                 if nums1[i - 1] == nums2[j - 1]:
                     m[i][j] = m[i - 1][j - 1] + 1
-                ans = max(ans, m[i][j])
+                    ans = max(ans, m[i][j])
         return ans
 
 
