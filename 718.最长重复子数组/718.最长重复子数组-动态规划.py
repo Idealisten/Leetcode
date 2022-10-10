@@ -22,7 +22,6 @@ class Solution:
     def findLength(self, nums1, nums2):
         len1 = len(nums1)
         len2 = len(nums2)
-        res = 0
         m = [[0 for i in range(len2 + 1)] for j in range(len1 + 1)]
         ans = 0
         for i in range(1, len1 + 1):
